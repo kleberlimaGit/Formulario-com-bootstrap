@@ -59,7 +59,7 @@
             ];
 
             if(!filter_var($_POST['filhos'], FILTER_VALIDATE_INT, $filhosConfig) && $_POST['filhos'] !=0){
-                $erros['filhos'] = 'Quantidade de filhos inválida';
+                $erros['filhos'] = 'Quantidade de filhos inválida (0-20)';
             }
 
             $salarioConfig = (float) $_POST['salario'];
@@ -73,11 +73,11 @@
     
         ?>
 
-        <!-- <?php  foreach($erros as $erro): ?>
+        <?php  if(count($erros)>0): ?>
         <div class="alert alert-danger" role="alert">
-            <?= "" ?>
+            <?= "Por favor preencha os campos obrigatórios" ?>
         </div>
-        <?php endforeach ?> -->
+        <?php endif ?>
 
 
 
@@ -122,7 +122,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="filhos">Quantidade de filhos</label>
+                    <label for="filhos">Quantidade de filhos (0-20)</label>
                     <input type="number" name="filhos" id="filhos" class="form-control <?= $erros['filhos']? 'is-invalid' : '' ?>">
                     <div class="invalid-feedback">
                         <?= $erros['filhos']?>
